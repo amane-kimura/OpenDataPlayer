@@ -313,6 +313,7 @@ namespace teamproject1
             else
             {
                 // 天気情報の更新処理
+
             }
             
             string strScenePath = Application.StartupPath.Replace("\\", "\\\\");
