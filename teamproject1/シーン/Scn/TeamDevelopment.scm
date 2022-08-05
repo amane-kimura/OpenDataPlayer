@@ -12,7 +12,7 @@ SceneIO		"Lambda.SioLocal.SceneIO"
 # UseSceneFontCache
 UseDevice Lambda.PcSound.Player { At Break Stop() }
 
-Source "éƒ½é“åºœçœŒ" {
+Source "“s“¹•{Œ§" {
   Csv { , Comment "#" }
   SysVar {}
   Struct {
@@ -27,72 +27,72 @@ Source "corona" {
   Csv { , Comment "#" }
   SysVar {}
   Struct {
-	Column "æ—¥ä»˜" { S 32 Descent }
-	Column "å…¨å›½" { L }
-	Column "åŒ—æµ·é“" { L }
-	Column "é’æ£®" { L }
-	Column "å²©æ‰‹" { L }
-	Column "å®®åŸ" { L }
-	Column "ç§‹ç”°" { L }
-	Column "å±±å½¢" { L }
-	Column "ç¦å³¶" { L }
-	Column "èŒ¨åŸ" { L }
-	Column "æ ƒæœ¨" { L }
-	Column "ç¾¤é¦¬" { L }
-	Column "åŸ¼ç‰" { L }
-	Column "åƒè‘‰" { L }
-	Column "æ±äº¬" { L }
-	Column "ç¥å¥ˆå·" { L }
-	Column "æ–°æ½Ÿ" { L }
-	Column "å¯Œå±±" { L }
-	Column "çŸ³å·" { L }
-	Column "ç¦äº•" { L }
-	Column "å±±æ¢¨" { L }
-	Column "é•·é‡" { L }
-	Column "å²é˜œ" { L }
-	Column "é™å²¡" { L }
-	Column "æ„›çŸ¥" { L }
-	Column "ä¸‰é‡" { L }
-	Column "æ»‹è³€" { L }
-	Column "äº¬éƒ½" { L }
-	Column "å¤§é˜ª" { L }
-	Column "å…µåº«" { L }
-	Column "å¥ˆè‰¯" { L }
-	Column "å’Œæ­Œå±±" { L }
-	Column "é³¥å–" { L }
-	Column "å³¶æ ¹" { L }
-	Column "å²¡å±±" { L }
-	Column "åºƒå³¶" { L }
-	Column "å±±å£" { L }
-	Column "å¾³å³¶" { L }
-	Column "é¦™å·" { L }
-	Column "æ„›åª›" { L }
-	Column "é«˜çŸ¥" { L }
-	Column "ç¦å²¡" { L }
-	Column "ä½è³€" { L }
-	Column "é•·å´" { L }
-	Column "ç†Šæœ¬" { L }
-	Column "å¤§åˆ†" { L }
-	Column "å®®å´" { L }
-	Column "é¹¿å…å³¶" { L }
-	Column "æ²–ç¸„" { L }
+	Column "“ú•t" { S 32 Descent }
+	Column "‘S‘" { L }
+	Column "–kŠC“¹" { L }
+	Column "ÂX" { L }
+	Column "Šâè" { L }
+	Column "‹{é" { L }
+	Column "H“c" { L }
+	Column "RŒ`" { L }
+	Column "•Ÿ“‡" { L }
+	Column "ˆïé" { L }
+	Column "“È–Ø" { L }
+	Column "ŒQ”n" { L }
+	Column "é‹Ê" { L }
+	Column "ç—t" { L }
+	Column "“Œ‹" { L }
+	Column "_“Şì" { L }
+	Column "VŠƒ" { L }
+	Column "•xR" { L }
+	Column "Îì" { L }
+	Column "•Ÿˆä" { L }
+	Column "R—œ" { L }
+	Column "’·–ì" { L }
+	Column "Šò•Œ" { L }
+	Column "Ã‰ª" { L }
+	Column "ˆ¤’m" { L }
+	Column "Od" { L }
+	Column " ‰ê" { L }
+	Column "‹“s" { L }
+	Column "‘åã" { L }
+	Column "•ºŒÉ" { L }
+	Column "“Ş—Ç" { L }
+	Column "˜a‰ÌR" { L }
+	Column "’¹æ" { L }
+	Column "“‡ª" { L }
+	Column "‰ªR" { L }
+	Column "L“‡" { L }
+	Column "RŒû" { L }
+	Column "“¿“‡" { L }
+	Column "ì" { L }
+	Column "ˆ¤•Q" { L }
+	Column "‚’m" { L }
+	Column "•Ÿ‰ª" { L }
+	Column "²‰ê" { L }
+	Column "’·è" { L }
+	Column "ŒF–{" { L }
+	Column "‘å•ª" { L }
+	Column "‹{è" { L }
+	Column "­™“‡" { L }
+	Column "‰«“ê" { L }
   }
 }
 
-Source "å¤©æ°—æƒ…å ±" {
+Source "“V‹Cî•ñ" {
   Csv { , Comment "#" }
   SysVar {}
   Struct {
-	Column "è¦³æ¸¬æ‰€ç•ªå·" { L Ascent }
-	Column "åœ°ç‚¹" { S 32 }
-	Column "ä»Šæ—¥ã®æœ€é«˜æ°—æ¸©" { L }
-	Column "ä»Šæ—¥ã®æœ€ä½æ°—æ¸©" { L }
-	Column "ç¾åœ¨ã®é™æ°´é‡" { L }
-	Column "ä»Šæ—¥ã®æœ€å¤§é¢¨é€Ÿ" { L }
+	Column "ŠÏ‘ªŠ”Ô†" { L Ascent }
+	Column "’n“_" { S 32 }
+	Column "¡“ú‚ÌÅ‚‹C‰·" { L }
+	Column "¡“ú‚ÌÅ’á‹C‰·" { L }
+	Column "Œ»İ‚Ì~…—Ê" { L }
+	Column "¡“ú‚ÌÅ‘å•—‘¬" { L }
   }
 }
 
 
-DataTable "ã‚³ãƒ­ãƒŠã®æƒ…å ±" { "corona" "æ–°è¦é™½æ€§è€…æ•°.csv" }
-DataTable "éƒ½é“åºœçœŒæƒ…å ±" { "éƒ½é“åºœçœŒ" "corona.csv" }
-DataTable "å¤©æ°—æƒ…å ±" { "å¤©æ°—æƒ…å ±" "å¤©æ°—æƒ…å ±.csv" }
+DataTable "ƒRƒƒi‚Ìî•ñ" { "corona" "V‹K—z«Ò”.csv" }
+DataTable "“s“¹•{Œ§î•ñ" { "“s“¹•{Œ§" "corona.csv" }
+DataTable "“V‹Cî•ñ" { "“V‹Cî•ñ" "“V‹Cî•ñ.csv" }
