@@ -81,6 +81,8 @@ namespace teamproject1
             this.Play = new System.Windows.Forms.Button();
             this.MonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.Stop = new System.Windows.Forms.Button();
+            this.OpendataFileWatcher = new System.IO.FileSystemWatcher();
+            ((System.ComponentModel.ISupportInitialize)(this.OpendataFileWatcher)).BeginInit();
             this.SuspendLayout();
             // 
             // id2
@@ -763,6 +765,11 @@ namespace teamproject1
             this.Stop.Visible = false;
             this.Stop.Click += new System.EventHandler(this.Stop_Click);
             // 
+            // OpendataFileWatcher
+            // 
+            this.OpendataFileWatcher.EnableRaisingEvents = true;
+            this.OpendataFileWatcher.SynchronizingObject = this;
+            // 
             // OpendataPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -825,6 +832,7 @@ namespace teamproject1
             this.Text = "OpendataPlayer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OpendataPlayer_FormClosed);
             this.Load += new System.EventHandler(this.OpendataPlayer_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.OpendataFileWatcher)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -882,6 +890,7 @@ namespace teamproject1
         private System.Windows.Forms.Button id47;
         private System.Windows.Forms.MonthCalendar MonthCalendar;
         private System.Windows.Forms.Button Stop;
+        private System.IO.FileSystemWatcher OpendataFileWatcher;
     }
 }
 

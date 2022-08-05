@@ -21,6 +21,7 @@ namespace teamproject1
         private bool m_bTakeFlag = false;
         private bool CoronaFlag = true;
         private System.Threading.Thread m_TakeThread = null;    //Take実行スレッド生成用
+        private OpendataDownLoader.OpendataDownLoader m_OpendataDownLoader = null;
 
 
         /*--------------------------------------------------------------------------------
@@ -29,12 +30,36 @@ namespace teamproject1
         public OpendataPlayer()
         {
             InitializeComponent();
+
+            // オープンデータ更新監視用fileSystemWatcher設定
+            string strCsvPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            strCsvPath = strCsvPath.Substring(0, strCsvPath.IndexOf("bin")) + @"\シーン\Data";
+            this.OpendataFileWatcher.Path = strCsvPath;
+            this.OpendataFileWatcher.Renamed += new System.IO.RenamedEventHandler(watcher_Renamed);
         }
+
         /*--------------------------------------------------------------------------------
          * 読み込み時に呼ばれます。
          *--------------------------------------------------------------------------------*/
         private void OpendataPlayer_Load(object sender, EventArgs e)
         {
+            try
+            {
+                m_OpendataDownLoader = new OpendataDownLoader.OpendataDownLoader();
+                if (!m_OpendataDownLoader.setupOpendataPlayer())
+                {
+                    m_OpendataDownLoader.deleteTask();
+                    m_OpendataDownLoader = null;
+                    MessageBox.Show(this, "オープンデータ自動取得プログラムの設定に失敗しました", "caption", MessageBoxButtons.OK);
+                    Close();
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "caption", MessageBoxButtons.OK);
+            }
+
             m_pplayer = new PrismPlayer();
             int ret = m_pplayer.initialize();
             Console.WriteLine(ret);
@@ -56,10 +81,8 @@ namespace teamproject1
 
             m_pplayer.execute("Load '" + strScenePath + "\\\\シーン\\\\Scn\\\\TeamDevelopment.scm'");
             //m_pplayer.execute("Control WinGL SetBackImage 'C:\\\\Users\\\\miyamoto\\\\Desktop\\\\a.png'");
-            //今日の日付を現地時刻で取得する
-            System.Console.WriteLine(System.DateTime.Today);
-            MonthCalendar.MaxDate = System.DateTime.Today;
         }
+
         /*--------------------------------------------------------------------------------
          * 終了時に呼ばれます。
          *--------------------------------------------------------------------------------*/
@@ -72,9 +95,24 @@ namespace teamproject1
                 m_pplayer.execute("Unload");
                 m_pplayer = null;
             }
+
+            if(OpendataFileWatcher != null)
+            {
+                OpendataFileWatcher.EnableRaisingEvents = false;
+                OpendataFileWatcher.Dispose();
+                OpendataFileWatcher = null;
+            }
+
+            m_OpendataDownLoader.deleteTask();
         }
+
+
         private static System.Threading.Timer MyTimer;
         int n = 0;
+
+        /*--------------------------------------------------------------------------------
+         * 
+         *--------------------------------------------------------------------------------*/
         private void Play_Click(object sender, EventArgs e)
         {
             //再生停止ボタンの切り替え
@@ -156,6 +194,10 @@ namespace teamproject1
             // タイマー起動(0.5秒後に処理実行、1秒おきに繰り返し)
             MyTimer = new System.Threading.Timer(callback, null, 500, 1000);  
         }
+
+        /*--------------------------------------------------------------------------------
+         * 
+         *--------------------------------------------------------------------------------*/
         private void Stop_Click(object sender, EventArgs e)
         {
             Play.Visible = true;
@@ -175,9 +217,9 @@ namespace teamproject1
         }
 
         /*--------------------------------------------------------------------------------
-        * Takeができるまで実行するスレッド。
-        * システム変数操作ボタン押下時に呼ばれます。
-        *--------------------------------------------------------------------------------*/
+         * Takeができるまで実行するスレッド。
+         * システム変数操作ボタン押下時に呼ばれます。
+         *--------------------------------------------------------------------------------*/
         private async void TakeThread()
         {
             //テイク待ちになるまで
@@ -190,10 +232,11 @@ namespace teamproject1
             m_pplayer.execute("Take");
             return;
         }
+        
         private string selectDate;
         /*--------------------------------------------------------------------------------
-        * 指定した日付・都道府県のコロナ感染者を表示
-        *--------------------------------------------------------------------------------*/
+         * 指定した日付・都道府県のコロナ感染者を表示
+         *--------------------------------------------------------------------------------*/
         private void NihonMethod(object sender, EventArgs e)
         {
             if (CoronaFlag)
@@ -214,6 +257,10 @@ namespace teamproject1
             }
             
         }
+
+        /*--------------------------------------------------------------------------------
+         * 
+         *--------------------------------------------------------------------------------*/
         private void MonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
             //選択した日付を出力
@@ -221,16 +268,56 @@ namespace teamproject1
             Console.WriteLine(MonthCalendar.SelectionStart.ToShortDateString());
         }
 
+        /*--------------------------------------------------------------------------------
+         * 
+         *--------------------------------------------------------------------------------*/
         private void Weather_Click(object sender, EventArgs e)
         {
             CoronaFlag = false;
             MonthCalendar.Visible = false;
         }
 
+        /*--------------------------------------------------------------------------------
+         * 
+         *--------------------------------------------------------------------------------*/
         private void Corona_Click(object sender, EventArgs e)
         {
             CoronaFlag = true;
             MonthCalendar.Visible = true;
+        }
+
+        /*--------------------------------------------------------------------------------
+         * オープンデータ保存ディレクトリ内に変更が起きた時に呼び出されるイベント.
+         * スキーマを読み込みなおす.
+         * 天気情報をまとめたファイルを作成する.
+         *--------------------------------------------------------------------------------*/
+        private void watcher_Renamed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            if (e.Name == "新規陽性者数tmp.csv")
+            {
+                // コロナ情報が更新された時の処理
+                try
+                {
+                    // 最新日時取得、カレンダーにセット
+                    string latestDate = this.m_OpendataDownLoader.formatDataforCovid();
+                    if(latestDate != "")
+                    {
+                        MonthCalendar.MaxDate = DateTime.ParseExact(latestDate, "yyyy/MM/dd", null);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                // 天気情報の更新処理
+            }
+            
+            string strScenePath = Application.StartupPath.Replace("\\", "\\\\");
+            strScenePath = strScenePath.Substring(0, strScenePath.IndexOf("bin"));
+            m_pplayer.execute("Load '" + strScenePath + "\\\\シーン\\\\Scn\\\\TeamDevelopment.scm'");
         }
     }
 }
