@@ -12,7 +12,6 @@ Frame "日本地図" {
 		} 
 		Image "イメージ" {
 			385 52 1150 976  CC 
-			Path "C:\\Users\\kimura\\Desktop\\チーム開発\\日本地図" 
 			Name C( "file name" ) 0 
 			ExpandForDevice 
 			Offset ( 0 ) ( 0 ) 

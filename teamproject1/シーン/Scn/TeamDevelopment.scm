@@ -94,5 +94,5 @@ Source "“V‹Cî•ñ" {
 
 
 DataTable "ƒRƒƒi‚Ìî•ñ" { "corona" "V‹K—z«Ò”.csv" }
-DataTable "“s“¹•{Œ§î•ñ" { "“s“¹•{Œ§" "corona.csv" }
+DataTable "“s“¹•{Œ§î•ñ" { "“s“¹•{Œ§" "“s“¹•{Œ§.csv" }
 DataTable "“V‹Cî•ñ" { "“V‹Cî•ñ" "“V‹Cî•ñ.csv" }
