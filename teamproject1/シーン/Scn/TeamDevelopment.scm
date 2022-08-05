@@ -79,18 +79,28 @@ Source "corona" {
   }
 }
 
-
 Source "天気情報" {
   Csv { , Comment "#" }
   SysVar {}
   Struct {
+<<<<<<< HEAD
 	Column "地点" { S 32 Descent }
 	Column "最高気温" { L }
 	Column "最低気温" { L }
 	Column "日降水量" { L }
 	Column "最大風速" { L }
+=======
+	Column "観測所番号" { L Ascent }
+	Column "地点" { S 32 }
+	Column "今日の最高気温" { L }
+	Column "今日の最低気温" { L }
+	Column "現在の降水量" { L }
+	Column "今日の最大風速" { L }
+>>>>>>> develop/kimura
   }
 }
+
+
 DataTable "コロナの情報" { "corona" "新規陽性者数.csv" }
-DataTable "都道府県情報" { "都道府県" "都道府県.csv" }
-DataTable "天気情報" { "天気情報" "weather.csv" }
+DataTable "都道府県情報" { "都道府県" "corona.csv" }
+DataTable "天気情報" { "天気情報" "天気情報.csv" }
