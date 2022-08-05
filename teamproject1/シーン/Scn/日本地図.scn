@@ -12,7 +12,6 @@ Frame "日本地図" {
 		} 
 		Image "イメージ" {
 			385 52 1150 976  CC 
-			Path "C:\\Users\\kimura\\Desktop\\チーム開発\\日本地図" 
 			Name C( "file name" ) 0 
 			ExpandForDevice 
 			Offset ( 0 ) ( 0 ) 
@@ -50,7 +49,7 @@ Frame "日本地図" {
 				Proportional 
 				"新型コロナウイルス\n" 
 				"新規陽性者数\n" 
-				"\(T( "コロナの情報" ) C( "日付" ) , Ss)" 
+				"\(V1 , Ss)" 
 			} 
 		} 
 	} 
